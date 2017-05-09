@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CellStyle;
 
 public class KoosTeamParser extends AbstractExcelParser {
   public KoosTeamParser(String path) throws Exception {
@@ -23,10 +24,14 @@ public class KoosTeamParser extends AbstractExcelParser {
 
   public void parseTeams(Consumer<Team> teamConsumer) {
 
-    parseRows(2, 21, null, row -> {
-      Cell cell = row.getCell(0);
-      Team team = new Team(cell.getStringCellValue());
+    parseRows(2, 20, null, row -> {
+      Cell teamCell = row.getCell(0);
+      String teamName = teamCell.getStringCellValue();
 
+      Cell playingDoublesCell = row.getCell(1);
+      boolean isPlayingDoubles = playingDoublesCell != null;
+
+      Team team = new Team(teamName, isPlayingDoubles);
       teamConsumer.accept(team);
     });
   }

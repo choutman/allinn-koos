@@ -2,31 +2,24 @@ package nl.woodmanict.koos.model;
 
 public class Team {
   private String name;
-  private String contactPerson;
+  private boolean playingDoubles;
 
-  public Team(String name) {
+  public Team(String name, boolean playingDoubles) {
     this.name = name;
+    this.playingDoubles = playingDoubles;
   }
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getContactPerson() {
-		return contactPerson;
-	}
-
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
-	}
+  public boolean isPlayingDoubles() {
+    return playingDoubles;
+  }
 
 	@Override
 	public String toString() {
-		return "Team [name=" + name + ", contactPerson=" + contactPerson + "]";
+		return "Team [name=" + name + ", playingDoubles=" + playingDoubles + "]";
 	}
 
   @Override
