@@ -1,0 +1,12 @@
+node {
+    download = true
+}
+
+postman {
+    collections = fileTree(dir: 'src/test/resources', include: 'KoosWebservice.postman_collection.json')
+    environment = file('src/test/resources/localhost.postman_environment.json')
+    stopOnError = false
+    cliReport = false
+    disableUnicode = false
+    xmlReportDir = 'build/testoutput'
+}
