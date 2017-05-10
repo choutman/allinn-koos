@@ -1,10 +1,9 @@
 package nl.woodmanict.koos.dao;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Optional;
-
 import nl.woodmanict.koos.model.Match;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MatchDaoImpl implements MatchDao {
 

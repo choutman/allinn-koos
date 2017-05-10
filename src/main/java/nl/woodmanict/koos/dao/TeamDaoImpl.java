@@ -1,10 +1,10 @@
 package nl.woodmanict.koos.dao;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Optional;
-
 import nl.woodmanict.koos.model.Team;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class TeamDaoImpl implements TeamDao {
 
