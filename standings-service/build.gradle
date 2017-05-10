@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '2.0.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    vertx = '3.4.1'
+}
+
+dependencies {
+    compile "io.vertx:vertx-core:$vertx"
+    compile "io.vertx:vertx-web:$vertx"
+    testCompile 'junit:junit:4.12'
+}
+
+mainClassName = 'nl.choutman.allinn.koos.StandingsVerticle'
+
+shadowJar {
+    classifier = 'fat'
+    mergeServiceFiles {
+        include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4.1'
+}
