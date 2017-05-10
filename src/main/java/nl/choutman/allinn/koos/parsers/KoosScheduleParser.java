@@ -1,9 +1,9 @@
-package nl.woodmanict.koos.parsers;
+package nl.choutman.allinn.koos.parsers;
 
-import nl.woodmanict.koos.dao.TeamDao;
-import nl.woodmanict.koos.dao.TeamDaoImpl;
-import nl.woodmanict.koos.model.Match;
-import nl.woodmanict.koos.model.Team;
+import nl.choutman.allinn.koos.dao.TeamDao;
+import nl.choutman.allinn.koos.dao.TeamDaoImpl;
+import nl.choutman.allinn.koos.model.Match;
+import nl.choutman.allinn.koos.model.Team;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Color;

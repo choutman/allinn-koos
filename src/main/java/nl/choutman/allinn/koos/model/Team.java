@@ -1,4 +1,4 @@
-package nl.woodmanict.koos.model;
+package nl.choutman.allinn.koos.model;
 
 public class Team {
   private String name;

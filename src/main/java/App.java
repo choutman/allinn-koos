@@ -1,10 +1,10 @@
-import nl.woodmanict.koos.dao.MatchDao;
-import nl.woodmanict.koos.dao.MatchDaoImpl;
-import nl.woodmanict.koos.dao.TeamDao;
-import nl.woodmanict.koos.dao.TeamDaoImpl;
-import nl.woodmanict.koos.model.Team;
-import nl.woodmanict.koos.parsers.KoosScheduleParser;
-import nl.woodmanict.koos.parsers.KoosTeamParser;
+import nl.choutman.allinn.koos.dao.MatchDao;
+import nl.choutman.allinn.koos.dao.MatchDaoImpl;
+import nl.choutman.allinn.koos.dao.TeamDao;
+import nl.choutman.allinn.koos.dao.TeamDaoImpl;
+import nl.choutman.allinn.koos.model.Team;
+import nl.choutman.allinn.koos.parsers.KoosScheduleParser;
+import nl.choutman.allinn.koos.parsers.KoosTeamParser;
 
 import java.io.File;
 import java.nio.charset.Charset;

@@ -1,6 +1,6 @@
-package nl.woodmanict.koos.dao;
+package nl.choutman.allinn.koos.dao;
 
-import nl.woodmanict.koos.model.Match;
+import nl.choutman.allinn.koos.model.Match;
 
 import java.util.List;
 

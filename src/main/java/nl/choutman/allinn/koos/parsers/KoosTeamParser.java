@@ -1,6 +1,6 @@
-package nl.woodmanict.koos.parsers;
+package nl.choutman.allinn.koos.parsers;
 
-import nl.woodmanict.koos.model.Team;
+import nl.choutman.allinn.koos.model.Team;
 import org.apache.poi.ss.usermodel.Cell;
 
 import java.util.function.Consumer;

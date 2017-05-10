@@ -1,6 +1,6 @@
-package nl.woodmanict.koos.dao;
+package nl.choutman.allinn.koos.dao;
 
-import nl.woodmanict.koos.model.Team;
+import nl.choutman.allinn.koos.model.Team;
 
 import java.util.List;
 import java.util.Optional;

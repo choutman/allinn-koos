@@ -1,4 +1,4 @@
-package nl.woodmanict.koos.parsers;
+package nl.choutman.allinn.koos.parsers;
 
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.Row;
