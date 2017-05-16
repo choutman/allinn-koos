@@ -10,6 +10,8 @@
       <module name="koos-competition-core_test" target="1.8" />
       <module name="koos_main" target="1.8" />
       <module name="koos_test" target="1.8" />
+      <module name="parsing-service_main" target="1.8" />
+      <module name="parsing-service_test" target="1.8" />
       <module name="standings-service_main" target="1.8" />
       <module name="standings-service_test" target="1.8" />
     </bytecodeTargetLevel>

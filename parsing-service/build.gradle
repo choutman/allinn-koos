@@ -5,19 +5,23 @@ plugins {
     id "de.infonautika.postman" version "0.0.5"
 }
 
+group 'nl.choutman.allinn.koos'
+version '0.1.0'
+
+sourceCompatibility = 1.8
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     compile project(':core')
-    testCompile 'junit:junit:4.12'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-mainClassName = 'nl.choutman.allinn.koos.StandingsVerticle'
+mainClassName = 'nl.choutman.allinn.koos.CompetitionParsingVerticle'
 
 apply from: '../vertx-config.gradle'
-apply from: 'postman-config.gradle'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.5'

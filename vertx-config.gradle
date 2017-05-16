@@ -1,5 +1,3 @@
-mainClassName = 'nl.choutman.allinn.koos.StandingsVerticle'
-
 shadowJar {
     classifier = 'fat'
     mergeServiceFiles {
