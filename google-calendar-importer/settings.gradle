@@ -15,4 +15,7 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'koos'
+rootProject.name = 'google-calendar-importer'
+
+include ':core'
+project(':core').projectDir = new File('../core')

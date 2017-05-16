@@ -1,0 +1,56 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Koos Webservice",
+		"_postman_id": "389b85bb-d657-282d-ec71-02cae2458110",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Standings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var schema = {",
+							"    \"title\": \"Standings\",",
+							"    \"description\": \"Standings for the Koos competition\",",
+							"    \"type\": \"array\",",
+							"    \"items\": {",
+							"        \"title\": \"Team position\",",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"            \"teamName\": {\"type\": \"string\"},",
+							"            \"gamesPlayed\": {\"type\": \"number\"},",
+							"            \"points\": {\"type\": \"number\"}",
+							"        },",
+							"        \"required\": [\"teamName\", \"gamesPlayed\", \"points\"]",
+							"    },",
+							"    \"minItems\": 1,",
+							"    \"uniqueItems\": true",
+							"}",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"tests[\"Response adheres to the schema\"] = tv4.validate(jsonData, schema);",
+							"console.log(\"Validation failed: \", tv4.error);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://{{host}}{{port}}/api/standings",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

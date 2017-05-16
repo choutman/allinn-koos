@@ -3,7 +3,7 @@ node {
 }
 
 postman {
-    collections = fileTree(dir: 'src/test/resources', include: 'KoosWebservice.postman_collection.json')
+    collections = fileTree(dir: 'src/test/resources', include: 'Koos Webservice.postman_collection.json')
     environment = file('src/test/resources/localhost.postman_environment.json')
     stopOnError = false
     cliReport = false

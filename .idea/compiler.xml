@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="core_main" target="1.8" />
+      <module name="core_test" target="1.8" />
+      <module name="google-calendar-importer_main" target="1.8" />
+      <module name="google-calendar-importer_test" target="1.8" />
+      <module name="koos-competition-core_main" target="1.8" />
+      <module name="koos-competition-core_test" target="1.8" />
+      <module name="koos_main" target="1.8" />
+      <module name="koos_test" target="1.8" />
+      <module name="standings-service_main" target="1.8" />
+      <module name="standings-service_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

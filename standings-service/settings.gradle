@@ -16,3 +16,5 @@ include 'services:webservice'
 */
 
 rootProject.name = 'standings-service'
+include ':core'
+project(':core').projectDir = new File('../core')
