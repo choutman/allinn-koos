@@ -1,6 +1,7 @@
 package nl.choutman.allinn.koos.parsers;
 
 import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.openxml4j.opc.PackageAccess;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -10,13 +11,11 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import static org.apache.poi.openxml4j.opc.PackageAccess.READ;
-
 public abstract class AbstractExcelParser {
   private Sheet mainSheet;
 
   public AbstractExcelParser(String fileName) throws Exception {
-    OPCPackage opcPackage = OPCPackage.open(fileName, READ);
+    OPCPackage opcPackage = OPCPackage.open(fileName, PackageAccess.READ);
     Workbook workbook = WorkbookFactory.create(opcPackage);
     mainSheet = workbook.getSheetAt(0);
   }

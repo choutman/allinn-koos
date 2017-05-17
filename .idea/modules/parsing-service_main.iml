@@ -12,6 +12,8 @@
     <orderEntry type="module" module-name="core_main" />
     <orderEntry type="library" name="Gradle: io.vertx:vertx-core:3.4.1" level="project" />
     <orderEntry type="library" name="Gradle: io.vertx:vertx-web:3.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi:3.16" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi-ooxml:3.16" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-common:4.1.8.Final" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-buffer:4.1.8.Final" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-transport:4.1.8.Final" level="project" />
@@ -24,9 +26,15 @@
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.7.4" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.7.4" level="project" />
     <orderEntry type="library" name="Gradle: io.vertx:vertx-auth-common:3.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-collections4:4.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi-ooxml-schemas:3.16" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.virtuald:curvesapi:1.04" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-codec:4.1.8.Final" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-codec-socks:4.1.8.Final" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-codec-dns:4.1.8.Final" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.7.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.xmlbeans:xmlbeans:2.6.0" level="project" />
+    <orderEntry type="library" name="Gradle: stax:stax-api:1.0.1" level="project" />
   </component>
 </module>
