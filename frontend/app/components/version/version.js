@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('myApp.version', [
-  'myApp.version.interpolate-filter',
-  'myApp.version.version-directive'
+angular.module('koosCompetitionApp.version', [
+  'koosCompetitionApp.version.interpolate-filter',
+  'koosCompetitionApp.version.version-directive'
 ])
 
-.value('version', '0.1');
+.value('version', '0.2');
