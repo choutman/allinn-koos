@@ -5,14 +5,14 @@ import org.apache.poi.ss.usermodel.Cell;
 
 import java.util.function.Consumer;
 
-public class KoosTeamParser extends AbstractExcelParser {
-  public KoosTeamParser(String path) throws Exception {
+public class TeamParser extends AbstractExcelParser {
+  public TeamParser(String path) throws Exception {
     super(path);
   }
 
   public void parseTeams(Consumer<Team> teamConsumer) {
 
-    parseRows(2, 20, null, row -> {
+    parseRows(3, 21, row -> {
       Cell teamCell = row.getCell(0);
       String teamName = teamCell.getStringCellValue();
 

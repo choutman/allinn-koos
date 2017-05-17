@@ -33,7 +33,7 @@ public class KoosScheduleParser extends AbstractExcelParser {
 
   public void parseSchedule(Consumer<Match> matchConsumer) {
 
-    parseRows(22, 243, null, row -> {
+    parseRows(23, 244, row -> {
 
       Cell firstColumn = row.getCell(0);
       Cell secondColumn = row.getCell(1);

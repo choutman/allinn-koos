@@ -9,7 +9,6 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 public abstract class AbstractExcelParser {
   private Sheet mainSheet;
@@ -20,21 +19,17 @@ public abstract class AbstractExcelParser {
     mainSheet = workbook.getSheetAt(0);
   }
 
-  protected void parseRows(int from, int to, Predicate<Row> rowPredicate, Consumer<Row> rowConsumer) {
+  protected void parseRows(int from, int to, Consumer<Row> rowConsumer) {
     Iterator<Row> rows = mainSheet.rowIterator();
 
     while(rows.hasNext()) {
       Row row = rows.next();
       int rowNumber = row.getRowNum();
 
-      if (rowNumber > to) break;
-      if (rowNumber < from || (rowPredicate != null && !rowPredicate.test(row))) continue;
+      if (rowNumber > to - 1) break;
+      if (rowNumber < from - 1) continue;
 
       rowConsumer.accept(row);
     }
-  }
-
-  protected Sheet getMainSheet(){
-    return mainSheet;
   }
 }

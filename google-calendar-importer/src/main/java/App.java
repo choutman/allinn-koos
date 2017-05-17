@@ -4,7 +4,7 @@ import nl.choutman.allinn.koos.dao.TeamDao;
 import nl.choutman.allinn.koos.dao.TeamDaoImpl;
 import nl.choutman.allinn.koos.model.Team;
 import nl.choutman.allinn.koos.parsers.KoosScheduleParser;
-import nl.choutman.allinn.koos.parsers.KoosTeamParser;
+import nl.choutman.allinn.koos.parsers.TeamParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -46,7 +46,7 @@ public class App {
 
         try {
             final String path = App.class.getResource("nl/choutman/allinn/koos/KoosCompetitie2017.xlsx").getPath();
-            KoosTeamParser teamParser = new KoosTeamParser(path);
+            TeamParser teamParser = new TeamParser(path);
 
             teamParser.parseTeams(teamDao::addTeam);
 

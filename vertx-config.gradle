@@ -5,6 +5,10 @@ shadowJar {
     }
 }
 
+runShadow {
+    args '-cluster'
+}
+
 ext {
     vertx = '3.4.1'
 }
@@ -12,4 +16,5 @@ ext {
 dependencies {
     compile "io.vertx:vertx-core:$vertx"
     compile "io.vertx:vertx-web:$vertx"
+    compile "io.vertx:vertx-hazelcast:$vertx"
 }
