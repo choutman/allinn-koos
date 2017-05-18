@@ -5,4 +5,4 @@ angular.module('koosCompetitionApp.version', [
   'koosCompetitionApp.version.version-directive'
 ])
 
-.value('version', '0.2');
+.value('version', '0.1.0');
