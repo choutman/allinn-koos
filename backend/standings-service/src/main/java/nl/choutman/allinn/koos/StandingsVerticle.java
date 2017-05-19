@@ -57,6 +57,7 @@ public class StandingsVerticle extends AbstractVerticle {
         route.produces("application/json").handler(routingContext -> {
             HttpServerResponse response = routingContext.response();
             response.putHeader("Content-Type", "application/json; charset=utf-8");
+            response.putHeader("Access-Control-Allow-Origin", "http://localhost:9000");
 
             if (standings.isEmpty()) {
                 response.setStatusCode(404).end();
