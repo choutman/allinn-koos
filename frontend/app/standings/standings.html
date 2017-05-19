@@ -4,7 +4,7 @@
     </div>
 </md-toolbar>
 
-<div style="text-align: center">
+<div ng-controller="StandingsController as ctrl" style="text-align: center">
     <md-table-container style="display: inline-block;">
         <table md-table>
             <thead md-head>
@@ -16,12 +16,12 @@
             </tr>
             </thead>
             <tbody md-body>
-            <tr md-row>
-                <td md-cell>1</td>
-                <td md-cell>Drive</td>
-                <td md-cell>23</td>
-                <td md-cell>3</td>
-            </tr>
+                <tr md-row ng-repeat="position in ctrl.positions">
+                    <td md-cell>{{$index+1}}</td>
+                    <td md-cell>{{position.teamName}}</td>
+                    <td md-cell>{{position.points}}</td>
+                    <td md-cell>{{position.gamesPlayed}}</td>
+                </tr>
             </tbody>
         </table>
     </md-table-container>

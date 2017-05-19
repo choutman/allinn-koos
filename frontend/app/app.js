@@ -3,7 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('koosCompetitionApp', [
     'ngRoute',
-    'standings',
+    'ngResource',
     'koosCompetitionApp.version',
     'ngMaterial',
     'md.data.table'
