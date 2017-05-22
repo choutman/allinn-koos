@@ -27,19 +27,27 @@ public class MatchMessageCodec implements MessageCodec<Match, Match> {
     @Override
     public void encodeToWire(Buffer buffer, Match match) {
         final JsonObject jsonObject = new JsonObject();
-        jsonObject.put("homeTeam", match.getHomeTeam());
-        jsonObject.put("awayTeam", match.getAwayTeam());
+
+        jsonObject.put("homeTeam", getTeamJsonObject(match.getHomeTeam()));
+        jsonObject.put("awayTeam", getTeamJsonObject(match.getAwayTeam()));
         jsonObject.put("dateTime", match.getDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
 
         buffer.appendString(jsonObject.encode());
+    }
+
+    private JsonObject getTeamJsonObject(Team team) {
+        final Buffer buffer = Buffer.buffer();
+        teamMessageCodec.encodeToWire(buffer, team);
+
+        return buffer.toJsonObject();
     }
 
     @Override
     public Match decodeFromWire(int pos, Buffer buffer) {
         final JsonObject entry = buffer.getBuffer(pos, buffer.length()).toJsonObject();
 
-        final JsonObject encodedHomeTeam = new JsonObject(entry.getString("homeTeam"));
-        final JsonObject encodedAwayTeam = new JsonObject(entry.getString("awayTeam"));
+        final JsonObject encodedHomeTeam = entry.getJsonObject("homeTeam");
+        final JsonObject encodedAwayTeam = entry.getJsonObject("awayTeam");
         final String dateTimeString = entry.getString("dateTime");
 
         final Team homeTeam = teamMessageCodec.decode(encodedHomeTeam);

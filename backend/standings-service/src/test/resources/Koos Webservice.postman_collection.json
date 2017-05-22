@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Koos Webservice",
-		"_postman_id": "389b85bb-d657-282d-ec71-02cae2458110",
+		"_postman_id": "317764e5-1134-f8e0-c0c3-0a461d4fe2f0",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -45,6 +45,92 @@
 			],
 			"request": {
 				"url": "http://{{host}}{{port}}/api/standings",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Competition",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://{{host}}:8081/api/competition",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"enabled": true,
+							"src": "KoosCompetitie2017.xlsx"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Schedule",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var schema = {",
+							"    \"title\": \"Schedule\",",
+							"    \"description\": \"The Koos competition schedule\",",
+							"    \"type\": \"array\",",
+							"    \"items\": {",
+							"        \"title\": \"Match\",",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"            \"homeTeamName\": {\"type\": \"string\"},",
+							"            \"awayTeamName\": {\"type\": \"string\"},",
+							"            \"dateTime\": {\"type\": \"string\"}",
+							"        },",
+							"        \"required\": [\"homeTeamName\", \"awayTeamName\", \"dateTime\"]",
+							"    },",
+							"    \"minItems\": 1,",
+							"    \"uniqueItems\": true",
+							"}",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"tests[\"Response adheres to the schema\"] = tv4.validate(jsonData, schema);",
+							"console.log(\"Validation failed: \", tv4.error);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://{{host}}:8082/api/schedule",
 				"method": "GET",
 				"header": [],
 				"body": {},
