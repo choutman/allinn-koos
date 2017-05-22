@@ -1,72 +1,10 @@
 /* app css stylesheet */
-* {
-    box-sizing: border-box;
-}
-
-.col-1 {
-    width: 8.33%;
-}
-
-.col-2 {
-    width: 16.66%;
-}
-
-.col-3 {
-    width: 25%;
-}
-
-.col-4 {
-    width: 33.33%;
-}
-
-.col-5 {
-    width: 41.66%;
-}
-
-.col-6 {
-    width: 50%;
-}
-
-.col-7 {
-    width: 58.33%;
-}
-
-.col-8 {
-    width: 66.66%;
-}
-
-.col-9 {
-    width: 75%;
-}
-
-.col-10 {
-    width: 83.33%;
-}
-
-.col-11 {
-    width: 91.66%;
-}
-
-.col-12 {
-    width: 100%;
-}
-
-[class*="col-"] {
-    float: left;
-    padding: 15px;
-}
 
 .menu {
     list-style: none;
     border-bottom: 0.1em solid black;
     margin-bottom: 2em;
     padding: 0 0 0.5em;
-}
-
-.row::after {
-    content: "";
-    clear: both;
-    display: table;
 }
 
 .menu:before {
@@ -86,12 +24,23 @@
     padding-right: 0.3em;
 }
 
-.md-default {
+md-nav-bar {
     position: fixed;
+    width: 100%;
+    background-color: white;
 }
 
-.md-table {
-    margin-top: 56px;
+md-nav-bar ul {
+    display: flex;
+    justify-content: center;
+}
+
+md-nav-bar ul li {
+    padding: 0 8px;
+}
+
+.md-default {
+    position: fixed;
 }
 
 .fade {

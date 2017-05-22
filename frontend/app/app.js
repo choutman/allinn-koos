@@ -13,5 +13,8 @@ angular.module('koosCompetitionApp', [
     $routeProvider.when('/standings', {
         templateUrl: 'standings/standings.html',
         controller: 'StandingsController'
+    }).when('/schedule', {
+        templateUrl: 'schedule.html',
+        controller: 'ScheduleController'
     }).otherwise({redirectTo: '/standings'});
 }]);
