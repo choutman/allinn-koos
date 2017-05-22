@@ -55,3 +55,11 @@ md-nav-bar ul li {
 .fade.ng-enter.ng-enter-active {
     opacity: 1;
 }
+
+/*md-card {*/
+    /*max-width: 400px;*/
+/*}*/
+
+md-card-title {
+    text-align: center;
+}
