@@ -25,7 +25,15 @@
       </div>
   </md-toolbar>
 
-  <div ng-view></div>
+  <div class="row">
+      <div ng-view class="col-6"></div>
+
+      <div ng-controller="ScheduleController as ctrl" class="col-6" style="margin-top: 56px;">
+          <span ng-repeat="match in ctrl.schedule">
+              <match match="match"></match>
+          </span>
+      </div>
+  </div>
 
   <div><small>v<span app-version></span></small></div>
 
@@ -44,9 +52,12 @@
 
   <script src="app.js"></script>
   <script src="controllers/standingsController.controller.js"></script>
+  <script src="controllers/scheduleController.controller.js"></script>
   <script src="services/standingsResourceService.service.js"></script>
+  <script src="services/scheduleResourceService.service.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+  <script src="components/match/match.component.js"></script>
 </body>
 </html>
