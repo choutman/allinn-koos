@@ -24,6 +24,14 @@
   padding-right: 0.3em;
 }
 
+.md-default {
+  position: fixed;
+}
+
+.md-table {
+  margin-top: 56px;
+}
+
 .fade {
   transition: 1s linear all;
   -webkit-transition: 1s linear all;

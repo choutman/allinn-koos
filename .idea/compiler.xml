@@ -12,6 +12,8 @@
       <module name="koos_test" target="1.8" />
       <module name="parsing-service_main" target="1.8" />
       <module name="parsing-service_test" target="1.8" />
+      <module name="schedule-service_main" target="1.8" />
+      <module name="schedule-service_test" target="1.8" />
       <module name="standings-service_main" target="1.8" />
       <module name="standings-service_test" target="1.8" />
     </bytecodeTargetLevel>
