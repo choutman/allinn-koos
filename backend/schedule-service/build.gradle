@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '2.0.0'
+    id "de.infonautika.postman" version "0.0.5"
+}
+
+group 'nl.choutman.allinn.koos'
+version '0.1.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':core')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+mainClassName = 'nl.choutman.allinn.koos.ScheduleVerticle'
+
+apply from: '../vertx-config.gradle'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}

@@ -1,5 +1,7 @@
 package nl.choutman.allinn.koos.parsers;
 
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 import nl.choutman.allinn.koos.dao.TeamDao;
 import nl.choutman.allinn.koos.dao.TeamDaoImpl;
 import nl.choutman.allinn.koos.model.Match;
@@ -17,69 +19,72 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class KoosScheduleParser extends AbstractExcelParser {
+public class ScheduleParser extends AbstractExcelParser {
+    private static final Logger logger = LoggerFactory.getLogger(ScheduleParser.class);
 
-  private final TeamDao teamDao;
-  private LocalDateTime dateTime = null;
+    private final TeamDao teamDao;
+    private LocalDateTime dateTime = null;
 
-  private int parsed = 0;
-  private int error = 0;
+    private int parsed = 0;
+    private int error = 0;
 
-  public KoosScheduleParser(String path) throws Exception {
-    super(path);
+    public ScheduleParser(String path) throws Exception {
+        super(path);
 
-    teamDao = TeamDaoImpl.getInstance();
-  }
+        teamDao = TeamDaoImpl.getInstance();
+    }
 
-  public void parseSchedule(Consumer<Match> matchConsumer) {
+    public void parseSchedule(Consumer<Match> matchConsumer) {
 
-    parseRows(23, 244, row -> {
+        parseRows(23, 244, row -> {
 
-      Cell firstColumn = row.getCell(0);
-      Cell secondColumn = row.getCell(1);
+            Cell firstColumn = row.getCell(0);
+            Cell secondColumn = row.getCell(1);
 
-      if (isDateHeader(firstColumn)) {
-        Date date = firstColumn.getDateCellValue();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.of("Europe/Paris")).toLocalDate();
+            if (isDateHeader(firstColumn)) {
+                Date date = firstColumn.getDateCellValue();
+                LocalDate localDate = date.toInstant().atZone(ZoneId.of("Europe/Paris")).toLocalDate();
 
-        String timeString = secondColumn.getStringCellValue();
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm 'uur'");
-        LocalTime time = LocalTime.parse(timeString, timeFormatter);
+                String timeString = secondColumn.getStringCellValue();
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm 'uur'");
+                LocalTime time = LocalTime.parse(timeString, timeFormatter);
 
-        dateTime = localDate.atTime(time);
+                dateTime = localDate.atTime(time);
 
-        System.out.println("Set time to: " + dateTime);
-      } else if (firstColumn != null) {
-        try {
-          final String homeTeamString = firstColumn.getStringCellValue();
-          final String awayTeamString = secondColumn.getStringCellValue();
+                logger.debug("Set time to: {0}", dateTime);
+            } else if (firstColumn != null) {
+                try {
+                    final String homeTeamString = firstColumn.getStringCellValue();
+                    final String awayTeamString = secondColumn.getStringCellValue();
 
-          Optional<Team> homeTeam = teamDao.findTeam(homeTeamString);
-          Optional<Team> awayTeam = teamDao.findTeam(awayTeamString);
+                    Optional<Team> homeTeam = teamDao.findTeam(homeTeamString);
+                    Optional<Team> awayTeam = teamDao.findTeam(awayTeamString);
 
-          if (homeTeam.isPresent() && awayTeam.isPresent()) {
-            Match match = new Match(homeTeam.get(), awayTeam.get(), dateTime);
-            matchConsumer.accept(match);
-            parsed++;
-          } else {
-            System.err.println("Could not find team " + homeTeamString + " or " + awayTeamString);
-          }
-        } catch (IllegalStateException e) {
-          System.err.println(row);
-          error++;
-        }
-      }
-    });
+                    if (homeTeam.isPresent() && awayTeam.isPresent()) {
+                        Match match = new Match(homeTeam.get(), awayTeam.get(), dateTime);
+                        matchConsumer.accept(match);
+                        parsed++;
+                    } else {
+                        logger.warn("Could not find team {0} or {1}", homeTeamString, awayTeamString);
+                    }
+                } catch (IllegalStateException e) {
+                    logger.warn("Unable to parse row");
+                    logger.debug(row);
 
-    System.out.println("parsed: " + parsed + "; error:" + error);
-  }
+                    error++;
+                }
+            }
+        });
 
-  private boolean isDateHeader(Cell cell) {
-    if (cell == null) return false;
+        logger.debug("Rows parsed: {0}; error: {1}", parsed, error);
+    }
 
-    CellStyle style = cell.getCellStyle();
-    Color backgroundColor = style.getFillBackgroundColorColor();
+    private boolean isDateHeader(Cell cell) {
+        if (cell == null) return false;
 
-    return backgroundColor != null;
-  }
+        CellStyle style = cell.getCellStyle();
+        Color backgroundColor = style.getFillBackgroundColorColor();
+
+        return backgroundColor != null;
+    }
 }

@@ -5,13 +5,10 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
-import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.EventBus;
-import io.vertx.core.eventbus.MessageCodec;
 import io.vertx.core.file.FileSystem;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.json.Json;
-import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.spi.cluster.ClusterManager;
@@ -21,10 +18,14 @@ import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.spi.cluster.hazelcast.HazelcastClusterManager;
 import nl.choutman.allinn.koos.dao.TeamDao;
 import nl.choutman.allinn.koos.dao.TeamDaoImpl;
+import nl.choutman.allinn.koos.model.Match;
 import nl.choutman.allinn.koos.model.Position;
 import nl.choutman.allinn.koos.model.Team;
+import nl.choutman.allinn.koos.parsers.ScheduleParser;
 import nl.choutman.allinn.koos.parsers.StandingsParser;
 import nl.choutman.allinn.koos.parsers.TeamParser;
+import nl.choutman.allinn.koos.vertx.messagecodecs.MatchMessageCodec;
+import nl.choutman.allinn.koos.vertx.messagecodecs.TeamMessageCodec;
 
 import java.util.List;
 import java.util.Set;
@@ -44,34 +45,9 @@ public class CompetitionParsingVerticle extends AbstractVerticle {
     @Override
     public void start(Future<Void> startFuture) throws Exception {
         eventBus = vertx.eventBus();
-        eventBus.registerDefaultCodec(Team.class, new MessageCodec<Team, Team>() {
-            @Override
-            public void encodeToWire(Buffer buffer, Team team) {
-                final String encodedTeam = Json.encode(team);
-                buffer.appendString(encodedTeam);
-            }
 
-            @Override
-            public Team decodeFromWire(int pos, Buffer buffer) {
-                final JsonObject entry = buffer.toJsonObject();
-                return new Team(entry.getString("name"), entry.getBoolean("playingDoubles"));
-            }
-
-            @Override
-            public Team transform(Team team) {
-                return team;
-            }
-
-            @Override
-            public String name() {
-                return getClass().getSimpleName();
-            }
-
-            @Override
-            public byte systemCodecID() {
-                return -1;
-            }
-        });
+        eventBus.registerDefaultCodec(Team.class, new TeamMessageCodec());
+        eventBus.registerDefaultCodec(Match.class, new MatchMessageCodec(new TeamMessageCodec()));
 
         Router router = Router.router(vertx);
         router.route("/api/competition").handler(BodyHandler.create());
@@ -91,8 +67,8 @@ public class CompetitionParsingVerticle extends AbstractVerticle {
             event.response().setStatusCode(201).end();
 
             parseTeams(filePath);
-
             parseStandings(filePath);
+            parseSchedule(filePath);
         });
 
         HttpServer httpServer = vertx.createHttpServer();
@@ -114,14 +90,23 @@ public class CompetitionParsingVerticle extends AbstractVerticle {
         }
     }
 
-    private void parseStandings(String to) {
+    private void parseStandings(String filePath) {
         try {
-            final StandingsParser standingsParser = new StandingsParser(to);
+            final StandingsParser standingsParser = new StandingsParser(filePath);
             final List<Position> positions = standingsParser.parseStandings();
 
             logger.debug("publishing standings");
 
             eventBus.publish("competition.standings", Json.encode(positions));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void parseSchedule(String filePath) {
+        try {
+            final ScheduleParser scheduleParser = new ScheduleParser(filePath);
+            scheduleParser.parseSchedule(match -> eventBus.publish("competition.match", match));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -139,4 +124,5 @@ public class CompetitionParsingVerticle extends AbstractVerticle {
             }
         });
     }
+
 }
