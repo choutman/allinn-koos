@@ -24,10 +24,19 @@
     padding-right: 0.3em;
 }
 
+md-toolbar {
+    z-index: 3;
+}
+
+md-content {
+    overflow: initial;
+}
+
 md-nav-bar {
     position: fixed;
     width: 100%;
     background-color: white;
+    z-index: 3;
 }
 
 md-nav-bar ul {
@@ -37,6 +46,10 @@ md-nav-bar ul {
 
 md-nav-bar ul li {
     padding: 0 8px;
+}
+
+.md-subheader {
+    top: 105px !important;
 }
 
 .md-default {
@@ -55,10 +68,6 @@ md-nav-bar ul li {
 .fade.ng-enter.ng-enter-active {
     opacity: 1;
 }
-
-/*md-card {*/
-    /*max-width: 400px;*/
-/*}*/
 
 md-card-title {
     text-align: center;

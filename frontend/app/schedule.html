@@ -1,12 +1,16 @@
 <div class="row">
     <div ng-controller="ScheduleController as ctrl">
-        <md-content class="md-padding" layout-xs="column" layout="row">
-            <section>
-                <md-subheader class="md-primary">Unread Messages</md-subheader>
-                <span ng-repeat="match in ctrl.schedule">
-            <match match="match"></match>
-        </span>
-            </section>
+        <md-content layout-xs="column" layout="row">
+            <div ng-repeat="(date, matches) in ctrl.schedule | groupBy: 'dateTime'" class="fade">
+                <section>
+                    <md-subheader class="md-primary" scrollTop="120px">
+                        {{date | date:'longDate'}} {{date | date:'shortTime'}}
+                    </md-subheader>
+                    <div ng-repeat="match in matches">
+                        <match match="match"></match>
+                    </div>
+                </section>
+            </div>
         </md-content>
     </div>
 </div>

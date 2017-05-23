@@ -25,23 +25,22 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<md-toolbar class="md-table-toolbar md-default">
-    <div class="md-toolbar-tools">
-        <span>Koos Competition</span>
-    </div>
-</md-toolbar>
-<div style="padding-top: 56px;"></div>
 
-<md-content>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <span>Koos Competition</span>
+        </div>
+    </md-toolbar>
+    <div style="padding-top: 56px;"></div>
+
     <md-nav-bar
             md-selected-nav-item="currentNavItem"
             nav-bar-aria-label="navigation links">
         <md-nav-item md-nav-href="#!/standings" name="standings">Standings</md-nav-item>
         <md-nav-item md-nav-href="#!/schedule" name="schedule">Schedule</md-nav-item>
     </md-nav-bar>
-    <div style="padding-top: 56px;"></div>
-    <div ng-view/>
-</md-content>
+    <div style="padding-top: 49px;"></div>
+    <div ng-view />
 
 <div>
     <small>v<span app-version></span></small>
@@ -51,8 +50,15 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
 <script src="bower_components/angular/angular.js"></script>
+<script>
+    var locale = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
+    if (locale) {
+        document.write('<script src="bower_components/angular-i18n/angular-locale_'+locale+'.js"><\/script>');
+    }
+</script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-filter/dist/angular-filter.js"></script>
 
 <!-- Angular Material requires Angular.js Libraries -->
 <script src="bower_components/angular-aria/angular-aria.js"></script>

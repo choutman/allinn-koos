@@ -4,6 +4,7 @@
 angular.module('koosCompetitionApp', [
     'ngRoute',
     'ngResource',
+    'angular.filter',
     'koosCompetitionApp.version',
     'ngMaterial',
     'md.data.table'
