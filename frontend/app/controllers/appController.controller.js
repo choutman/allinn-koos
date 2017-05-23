@@ -4,8 +4,8 @@
 (function(){
     'use strict';
 
-    function AppController($scope) {
-        $scope.currentNavItem = 'standings';
+    function AppController($scope, $location) {
+        $scope.currentNavItem = $location.path();
     }
 
     angular.module('koosCompetitionApp')
