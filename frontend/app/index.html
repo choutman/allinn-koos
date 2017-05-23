@@ -26,7 +26,7 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-    <md-toolbar class="md-table-toolbar md-default">
+    <md-toolbar class="md-primary md-default">
         <div class="md-toolbar-tools">
             <span>Koos Competition</span>
         </div>
@@ -35,7 +35,8 @@
 
     <md-nav-bar
             md-selected-nav-item="currentNavItem"
-            nav-bar-aria-label="navigation links">
+            nav-bar-aria-label="navigation links"
+    style="md-default">
         <md-nav-item md-nav-href="#!/standings" name="standings">Standings</md-nav-item>
         <md-nav-item md-nav-href="#!/schedule" name="schedule">Schedule</md-nav-item>
     </md-nav-bar>
@@ -67,6 +68,7 @@
 <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 
 <script src="app.js"></script>
+<script src="app.theme.js"></script>
 <script src="controllers/appController.controller.js"></script>
 <script src="controllers/standingsController.controller.js"></script>
 <script src="controllers/scheduleController.controller.js"></script>
