@@ -1,4 +1,4 @@
-<md-card ng-hide="$ctrl.match == null">
+<md-card ng-hide="$ctrl.match.homeTeamName == null || $ctrl.match.awayTeamName == null || $ctrl.match.dateTime == null">
     <md-card-title>
         <md-card-title-text>
             <span class="md-headline">{{$ctrl.match.homeTeamName}}</span>
