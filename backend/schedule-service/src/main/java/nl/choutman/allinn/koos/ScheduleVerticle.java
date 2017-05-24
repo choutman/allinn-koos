@@ -18,6 +18,7 @@ import io.vertx.ext.web.Route;
 import io.vertx.ext.web.Router;
 import io.vertx.spi.cluster.hazelcast.HazelcastClusterManager;
 import nl.choutman.allinn.koos.model.Match;
+import nl.choutman.allinn.koos.vertx.cors.CORS;
 import nl.choutman.allinn.koos.vertx.messagecodecs.MatchMessageCodec;
 import nl.choutman.allinn.koos.vertx.messagecodecs.TeamMessageCodec;
 
@@ -59,8 +60,12 @@ public class ScheduleVerticle extends AbstractVerticle {
 
         route.produces("application/json").handler(routingContext -> {
             HttpServerResponse response = routingContext.response();
+
+            final String origin = routingContext.request().getHeader("Origin");
+            if (CORS.isAllowed(origin)) {
+                response.putHeader("Access-Control-Allow-Origin", origin);
+            }
             response.putHeader("Content-Type", "application/json; charset=utf-8");
-            response.putHeader("Access-Control-Allow-Origin", "http://localhost:9000");
 
             if (schedule.isEmpty()) {
                 response.setStatusCode(404).end();
