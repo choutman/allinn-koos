@@ -1,34 +1,39 @@
 //jshint strict: false
-module.exports = function(config) {
-  config.set({
+module.exports = function (config) {
+    config.set({
 
-    basePath: './app',
+        basePath: './app',
 
-    files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'components/**/*.js',
-      'view*/**/*.js'
-    ],
+        files: [
+            '../node_modules/angular/angular.js',
+            '../node_modules/angular-route/angular-route.js',
+            '../node_modules/angular-resource/angular-resource.js',
+            '../node_modules/angular-filter/dist/angular-filter.js',
+            '../node_modules/angular-material/angular-material.js',
+            '../node_modules/angular-animate/angular-animate.js',
+            '../node_modules/angular-aria/angular-aria.js',
+            '../node_modules/angular-material-data-table/dist/md-data-table.js',
+            '../node_modules/angular-mocks/angular-mocks.js',
+            'app.js',
+            'components/**/*.js'
+        ],
 
-    autoWatch: true,
+        autoWatch: true,
 
-    frameworks: ['jasmine'],
+        frameworks: ['jasmine'],
 
-    browsers: ['Chrome'],
+        browsers: ['Chrome'],
 
-    plugins: [
-      'karma-chrome-launcher',
-      'karma-firefox-launcher',
-      'karma-jasmine',
-      'karma-junit-reporter'
-    ],
+        plugins: [
+            'karma-chrome-launcher',
+            'karma-jasmine',
+            'karma-junit-reporter'
+        ],
 
-    junitReporter: {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
+        junitReporter: {
+            outputFile: 'test_out/unit.xml',
+            suite: 'unit'
+        }
 
-  });
+    });
 };
