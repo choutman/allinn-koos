@@ -1,20 +1,29 @@
 /**
  * Created by choutman on 24/05/2017.
  */
-describe('match component', function () {
-    var $componentController;
+describe('Components', function () {
+    beforeEach(angular.mock.module("koosCompetitionApp"));
 
-    beforeEach(module('koosCompetitionApp'));
+    describe('match', function () {
+        var $compile;
+        var $scope;
 
-    beforeEach(inject(function(_$componentController_) {
-        $componentController = _$componentController_;
-    }));
+        beforeEach(module('templates'));
 
-    it('should not display anything when match is null', function () {
-        var controller = $componentController('match', null, {
-            match: null
-        });
+        beforeEach(inject(function(_$compile_, _$rootScope_) {
+            $compile = _$compile_;
+            $scope = _$rootScope_.$new();
+        }));
 
-        expect(controller.match).toBeNull();
-    })
+        it('should not display anything when match is null', inject(function () {
+            var element = $compile("<match></match>")($scope);
+
+            $scope.$digest();
+
+            var mdCard = element.find('md-card');
+
+            expect(mdCard.hasClass("ng-hide")).toBe(true);
+        }));
+    });
+
 });

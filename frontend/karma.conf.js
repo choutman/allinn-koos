@@ -4,6 +4,14 @@ module.exports = function (config) {
 
         basePath: './app',
 
+        preprocessors: {
+            'components/**/*.html': ['ng-html2js']
+        },
+
+        ngHtml2JsPreprocessor: {
+            moduleName: 'templates'
+        },
+
         files: [
             '../node_modules/angular/angular.js',
             '../node_modules/angular-route/angular-route.js',
@@ -15,7 +23,8 @@ module.exports = function (config) {
             '../node_modules/angular-material-data-table/dist/md-data-table.js',
             '../node_modules/angular-mocks/angular-mocks.js',
             'app.js',
-            'components/**/*.js'
+            'components/**/*.js',
+            'components/**/*.html'
         ],
 
         autoWatch: true,
@@ -27,7 +36,8 @@ module.exports = function (config) {
         plugins: [
             'karma-chrome-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-junit-reporter',
+            'karma-ng-html2js-preprocessor'
         ],
 
         junitReporter: {
